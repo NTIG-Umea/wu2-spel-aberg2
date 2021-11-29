@@ -9,7 +9,7 @@ class PlayScene extends Phaser.Scene {
 
         // ladda spelets bakgrundsbild, statisk
         // setOrigin behöver användas för att den ska ritas från top left
-        this.add.image(0, 0, 'background').setOrigin(0, 0);
+        this.add.image(0, 0, 'background').setOrigin(0, 0)
 
         // skapa en tilemap från JSON filen vi preloadade
         const map = this.make.tilemap({ key: 'map' });
@@ -37,7 +37,7 @@ class PlayScene extends Phaser.Scene {
         // platforms.setCollision(1, true, true);
 
         // skapa en spelare och ge den studs
-        this.player = this.physics.add.sprite(50, 300, 'player');
+        this.player = this.physics.add.sprite(50, 350, 'player');
         this.player.setBounce(0.1);
         this.player.setCollideWorldBounds(true);
 
@@ -107,13 +107,9 @@ class PlayScene extends Phaser.Scene {
 
         // följande kod är från det tutorial ni gjort tidigare
         // Control the player with left or right keys
-        if (this.cursors.left.isDown) {
-            this.player.setVelocityX(-200);
-            if (this.player.body.onFloor()) {
-                this.player.play('walk', true);
-            }
-        } else if (this.cursors.right.isDown) {
-            this.player.setVelocityX(200);
+        
+          if (this.cursors) {
+            this.player.setVelocityX(550);
             if (this.player.body.onFloor()) {
                 this.player.play('walk', true);
             }

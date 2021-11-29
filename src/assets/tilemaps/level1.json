@@ -4,7 +4,7 @@
  "layers":[
         {
          "compression":"",
-         "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkAAAAKAAAACwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQAAAAoAAAALAAAAAAAAAAAAAAAAAAAALQAAAC4AAAAvAAAAMAAAAC0AAAAuAAAAJgAAAAAAAAAnAAAALgAAAC8AAAAwAAAALQAAAC4AAAA=",
+         "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALQAAAC4AAAAvAAAAMAAAAC0AAAAuAAAAJgAAACYAAAAnAAAALgAAAC8AAAAwAAAALQAAAC4AAAA=",
          "encoding":"base64",
          "height":7,
          "id":1,
@@ -23,15 +23,15 @@
          "objects":[
                 {
                  "gid":76,
-                 "height":64,
+                 "height":126.20470963505,
                  "id":3,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":448,
-                 "y":448
+                 "x":193.296932169997,
+                 "y":382.43287362792
                 }, 
                 {
                  "gid":76,
@@ -42,8 +42,20 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":704,
-                 "y":384
+                 "x":510.66103762079,
+                 "y":385.681208368515
+                }, 
+                {
+                 "gid":76,
+                 "height":125.364105450793,
+                 "id":5,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":769.936391781593,
+                 "y":383.258467023173
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -52,7 +64,7 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":5,
+ "nextobjectid":6,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",
