@@ -10,7 +10,7 @@ class PlayScene extends Phaser.Scene {
         // ladda spelets bakgrundsbild, statisk
         // setOrigin behöver användas för att den ska ritas från top left
         let bg = this.add.image(0, 0, 'background').setOrigin(0, 0);
-        
+        bg.setScrollFactor(0);
        //  this.Align.scaleToGameW(bg, 2);
 
         // this.aGrid=new AlignGrid({scene:this,rows:11,cols:11});
@@ -43,8 +43,7 @@ class PlayScene extends Phaser.Scene {
         // skapa en spelare och ge den studs
         this.player = this.physics.add.sprite(50, 350, 'player');
         this.player.setBounce(0.1);
-        this.player.setCollideWorldBounds(true);
-
+        this.player.setCollideWorldBounds(false);
         // skapa en fysik-grupp
         this.spikes = this.physics.add.group({
             allowGravity: false,
@@ -115,7 +114,7 @@ class PlayScene extends Phaser.Scene {
         // Control the player with left or right keys
         
           if (this.cursors) {
-            this.player.setVelocityX(150);
+            this.player.setVelocityX(450);
             if (this.player.body.onFloor()) {
                 this.player.play('walk', true);
             }
@@ -145,7 +144,10 @@ class PlayScene extends Phaser.Scene {
             // otherwise, make them face the other side
             this.player.setFlipX(true);
         }
-        this.cameras.main.scrollX = this.player.x-50;
+        if(this.player.x > 400)
+        {
+            this.cameras.main.scrollX = this.player.x-400;
+        }
     }
 
     // metoden updateText för att uppdatera overlaytexten i spelet
