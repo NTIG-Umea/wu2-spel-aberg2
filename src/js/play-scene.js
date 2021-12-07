@@ -1,6 +1,8 @@
 class PlayScene extends Phaser.Scene {
     constructor() {
         super('PlayScene');
+
+        this.score = 0;
     }
 
     create() {
@@ -11,7 +13,10 @@ class PlayScene extends Phaser.Scene {
         // setOrigin behöver användas för att den ska ritas från top left
         let bg = this.add.image(0, 0, 'background').setOrigin(0, 0);
         bg.setScrollFactor(0);
-       //  this.Align.scaleToGameW(bg, 2);
+        //  this.Align.scaleToGameW(bg, 2);
+
+
+
 
         // this.aGrid=new AlignGrid({scene:this,rows:11,cols:11});
 
@@ -96,6 +101,8 @@ class PlayScene extends Phaser.Scene {
         this.events.on('resume', function () {
             console.log('Play scene resumed');
         });
+        this.scoreText = this.add.text(16, 16, '', { fontSize: '32px', fill: '#000' });
+        
 
 
     }
@@ -112,8 +119,8 @@ class PlayScene extends Phaser.Scene {
 
         // följande kod är från det tutorial ni gjort tidigare
         // Control the player with left or right keys
-        
-          if (this.cursors) {
+
+        if (this.cursors) {
             this.player.setVelocityX(450);
             if (this.player.body.onFloor()) {
                 this.player.play('walk', true);
@@ -144,10 +151,17 @@ class PlayScene extends Phaser.Scene {
             // otherwise, make them face the other side
             this.player.setFlipX(true);
         }
-        if(this.player.x > 400)
-        {
-            this.cameras.main.scrollX = this.player.x-400;
+        if (this.player.x > 400) {
+            this.cameras.main.scrollX = this.player.x - 400;
         }
+        if (this.player.x > 1) {
+            
+            this.score += 1;
+            this.scoreText.setText('Score:' + this.score);
+        }
+        this.scoreText.setScrollFactor(0);
+       
+        console.log(this.score);
     }
 
     // metoden updateText för att uppdatera overlaytexten i spelet
@@ -172,6 +186,8 @@ class PlayScene extends Phaser.Scene {
             ease: 'Linear',
             repeat: 5
         });
+        this.cameras.main.scrollX = 0;
+
         this.updateText();
     }
 
