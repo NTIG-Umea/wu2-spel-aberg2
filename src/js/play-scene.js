@@ -159,7 +159,7 @@ class PlayScene extends Phaser.Scene {
         if (this.player.x > 1) {
             this.score += 0.06;
             
-            this.scoreText.setText('Score:' + ((this.score).toFixed(0)));
+            this.scoreText.setText('Score: ' + ((this.score).toFixed(0)));
             
         }
         
