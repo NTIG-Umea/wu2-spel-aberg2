@@ -1,7 +1,6 @@
 class PlayScene extends Phaser.Scene {
     constructor() {
         super('PlayScene');
-
         this.score = 0;
     }
 
@@ -48,7 +47,7 @@ class PlayScene extends Phaser.Scene {
         // skapa en spelare och ge den studs
         this.player = this.physics.add.sprite(50, 350, 'player');
         this.player.setBounce(0.1);
-        this.player.setCollideWorldBounds(false);
+        this.player.setCollideWorldBounds(true);
         // skapa en fysik-grupp
         this.spikes = this.physics.add.group({
             allowGravity: false,
@@ -101,7 +100,7 @@ class PlayScene extends Phaser.Scene {
         this.events.on('resume', function () {
             console.log('Play scene resumed');
         });
-        this.scoreText = this.add.text(16, 16, '', { fontSize: '32px', fill: '#000' });
+        this.scoreText = this.add.text(16, 48, '', { fontSize: '16px', fill: '#ffffff' });
         
 
 
@@ -110,6 +109,8 @@ class PlayScene extends Phaser.Scene {
     // play scenens update metod
     update() {
         // för pause
+        this.physics.world.bounds.setPosition(this.cameras.main.worldView.x,0);
+
         if (this.keyObj.isDown) {
             // pausa nuvarande scen
             this.scene.pause();
@@ -121,7 +122,7 @@ class PlayScene extends Phaser.Scene {
         // Control the player with left or right keys
 
         if (this.cursors) {
-            this.player.setVelocityX(450);
+            this.player.setVelocityX(3050);
             if (this.player.body.onFloor()) {
                 this.player.play('walk', true);
             }
@@ -153,12 +154,16 @@ class PlayScene extends Phaser.Scene {
         }
         if (this.player.x > 400) {
             this.cameras.main.scrollX = this.player.x - 400;
+            this.cameras.main.setBounds(0,0,25600,448);
         }
         if (this.player.x > 1) {
-            
             this.score += 1;
+            
             this.scoreText.setText('Score:' + this.score);
+            
         }
+        
+
         this.scoreText.setScrollFactor(0);
        
         console.log(this.score);
@@ -167,7 +172,7 @@ class PlayScene extends Phaser.Scene {
     // metoden updateText för att uppdatera overlaytexten i spelet
     updateText() {
         this.text.setText(
-            `Arrow keys to move. Space to jump. W to pause. Spiked: ${this.spiked}`
+            `W to pause. Spiked: ${this.spiked}`
         );
     }
 
@@ -187,7 +192,7 @@ class PlayScene extends Phaser.Scene {
             repeat: 5
         });
         this.cameras.main.scrollX = 0;
-
+        this.score = 0;
         this.updateText();
     }
 
