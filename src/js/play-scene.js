@@ -100,7 +100,7 @@ class PlayScene extends Phaser.Scene {
         this.events.on('resume', function () {
             console.log('Play scene resumed');
         });
-        this.scoreText = this.add.text(16, 48, '', { fontSize: '16px', fill: '#ffffff' });
+        this.scoreText = this.add.text(16, 48, '', { fontFamily: 'Arial', fontSize: '25px', fill: '#ffffff' });
         
 
 
@@ -117,12 +117,12 @@ class PlayScene extends Phaser.Scene {
             // starta menyscenene
             this.scene.launch('MenuScene');
         }
-
+       
         // följande kod är från det tutorial ni gjort tidigare
         // Control the player with left or right keys
 
         if (this.cursors) {
-            this.player.setVelocityX(3050);
+            this.player.setVelocityX(350);
             if (this.player.body.onFloor()) {
                 this.player.play('walk', true);
             }
@@ -157,9 +157,9 @@ class PlayScene extends Phaser.Scene {
             this.cameras.main.setBounds(0,0,25600,448);
         }
         if (this.player.x > 1) {
-            this.score += 1;
+            this.score += 0.06;
             
-            this.scoreText.setText('Score:' + this.score);
+            this.scoreText.setText('Score:' + ((this.score).toFixed(0)));
             
         }
         
