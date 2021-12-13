@@ -2,7 +2,7 @@
 import PlayScene from './play-scene';
 import PreloadScene from './preload-scene';
 import MenuScene from './menu-scene';
-import parallex from './parallex';
+import menu from './menu';
 
 // spelets config
 const config = {
@@ -14,12 +14,12 @@ const config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 400 },
+            gravity: { y: 900 },
             //enableBody: true,
             debug: true
         }
     },
-    scene: [PreloadScene, PlayScene, MenuScene, parallex],
+    scene: [PreloadScene, PlayScene, MenuScene, menu],
     parent: 'game'
 };
 

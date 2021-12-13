@@ -55,7 +55,7 @@ class PlayScene extends Phaser.Scene {
         });
 
         for (var i = 0; i < 75; i++) {
-            var x = Phaser.Math.RND.between(25600,350);
+            var x = Phaser.Math.RND.between(25600,500);
             var y = Phaser.Math.RND.between(352,352);
     
             this.spikes.create(x, y, 'spike', 'spike');
@@ -160,9 +160,7 @@ class PlayScene extends Phaser.Scene {
         }
         // Player can jump while walking any direction by pressing the space bar
         // or the 'UP' arrow
-        if (
-            (this.cursors.space.isDown || this.cursors.up.isDown)
-        ) {
+        if (this.cursors.space.isDown || this.cursors.up.isDown) {
             this.player.setVelocityY(-350);
             this.player.play('jump', true);
         }
@@ -199,8 +197,8 @@ class PlayScene extends Phaser.Scene {
     playerHit(player, spike) {
         this.spiked++;
         player.setVelocity(0, 0);
-        player.setX(50);
-        player.setY(300);
+        player.setX(0);
+        player.setY(400);
         player.play('idle', true);
         let tw = this.tweens.add({
             targets: player,
