@@ -2,6 +2,7 @@ class PlayScene extends Phaser.Scene {
     constructor() {
         super('PlayScene');
         this.score = 0;
+        this.highscore = 0;
     }
 
     create() {
@@ -55,9 +56,9 @@ class PlayScene extends Phaser.Scene {
         });
 
         for (var i = 0; i < 75; i++) {
-            var x = Phaser.Math.RND.between(25600,500);
-            var y = Phaser.Math.RND.between(352,352);
-    
+            var x = Phaser.Math.RND.between(25600, 500);
+            var y = Phaser.Math.RND.between(352, 352);
+
             this.spikes.create(x, y, 'spike', 'spike');
         }
         // från platforms som skapats från tilemappen
@@ -65,16 +66,16 @@ class PlayScene extends Phaser.Scene {
         // i tilemappen finns det ett lager Spikes
         // som innehåller spikarnas position
         console.log(this.platforms);
-       /* map.getObjectLayer('Spikes').objects.forEach((spike) => {
-            // iterera över spikarna, skapa spelobjekt
-            const spikeSprite = this.spikes
-                .create(spike.x, spike.y - spike.height, 'spike')
-                
-                .setOrigin(0);
-            spikeSprite.body
-                .setSize(spike.width, spike.height - 20)
-                .setOffset(0, 20);
-        });*/
+        /* map.getObjectLayer('Spikes').objects.forEach((spike) => {
+             // iterera över spikarna, skapa spelobjekt
+             const spikeSprite = this.spikes
+                 .create(spike.x, spike.y - spike.height, 'spike')
+                 
+                 .setOrigin(0);
+             spikeSprite.body
+                 .setSize(spike.width, spike.height - 20)
+                 .setOffset(0, 20);
+         });*/
         // lägg till en collider mellan spelare och spik
         // om en kollision sker, kör callback metoden playerHit
         this.physics.add.collider(
@@ -109,7 +110,8 @@ class PlayScene extends Phaser.Scene {
             console.log('Play scene resumed');
         });
         this.scoreText = this.add.text(16, 48, '', { fontFamily: 'Arial', fontSize: '25px', fill: '#ffffff' });
-        
+        this.highText = this.add.text(16, 48, '', { fontFamily: 'Arial', fontSize: '25px', fill: '#ffffff' });
+
 
 
     }
@@ -117,7 +119,7 @@ class PlayScene extends Phaser.Scene {
     // play scenens update metod
     update() {
         // för pause
-        this.physics.world.bounds.setPosition(this.cameras.main.worldView.x,0);
+        this.physics.world.bounds.setPosition(this.cameras.main.worldView.x, 0);
 
         if (this.keyW.isDown) {
             // pausa nuvarande scen
@@ -125,11 +127,11 @@ class PlayScene extends Phaser.Scene {
             // starta menyscenene
             this.scene.launch('MenuScene');
         }
-        if (this.keyR.isDown){
+        if (this.keyR.isDown) {
             this.scene.restart();
             this.score = 0;
         }
-       
+
         // följande kod är från det tutorial ni gjort tidigare
         // Control the player with left or right keys
 
@@ -155,12 +157,13 @@ class PlayScene extends Phaser.Scene {
             this.player.setVelocityX(850);
         }
 
-        if (this.cursors.left.isDown) {
+       /* if (this.cursors.left.isDown) {
             this.player.setVelocityX(-850);
-        }
+        }*/
         // Player can jump while walking any direction by pressing the space bar
         // or the 'UP' arrow
-        if (this.cursors.space.isDown || this.cursors.up.isDown) {
+        if ((this.cursors.space.isDown || this.cursors.up.isDown) &&
+        this.player.body.onFloor()) {
             this.player.setVelocityY(-350);
             this.player.play('jump', true);
         }
@@ -173,20 +176,23 @@ class PlayScene extends Phaser.Scene {
         }
         if (this.player.x > 400) {
             this.cameras.main.scrollX = this.player.x - 400;
-            this.cameras.main.setBounds(0,0,25600,448);
+            this.cameras.main.setBounds(0, 0, 25600, 448);
         }
         if (this.player.x > 1) {
             this.score += 0.06;
-            
-            
+
         }
-        
+        if (this.score > this.highscore){
+            this.highscore += 0.06
+        }
         this.text.setText(
-            `W to pause | R to restart | Deaths ${this.spiked} | Score ${(this.score).toFixed(0)}`
+            `W to pause | R to restart | Deaths ${this.spiked} | Score ${(this.score).toFixed(0)} | High Score ${(this.highscore).toFixed(0)}`
         );
 
         this.scoreText.setScrollFactor(0);
-       
+        this.highText.setScrollFactor(0);
+
+
     }
 
     // metoden updateText för att uppdatera overlaytexten i spelet
@@ -198,7 +204,7 @@ class PlayScene extends Phaser.Scene {
         this.spiked++;
         player.setVelocity(0, 0);
         player.setX(0);
-        player.setY(400);
+        player.setY(350);
         player.play('idle', true);
         let tw = this.tweens.add({
             targets: player,
@@ -209,10 +215,9 @@ class PlayScene extends Phaser.Scene {
             repeat: 5
         });
         this.cameras.main.scrollX = 0;
-        this.score = 0;
         this.updateText();
-        
-    }   
+        this.score = 0;
+    }
 
     // när vi skapar scenen så körs initAnims för att ladda spelarens animationer
     initAnims() {
