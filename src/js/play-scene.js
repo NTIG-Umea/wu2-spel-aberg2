@@ -57,7 +57,7 @@ class PlayScene extends Phaser.Scene {
 
         for (var i = 0; i < 75; i++) {
             var x = Phaser.Math.RND.between(25600, 500);
-            var y = Phaser.Math.RND.between(352, 352);
+            var y = Phaser.Math.RND.between(366, 366);
 
             this.spikes.create(x, y, 'spike', 'spike');
         }
