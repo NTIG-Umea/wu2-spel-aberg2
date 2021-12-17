@@ -93,7 +93,9 @@ class PlayScene extends Phaser.Scene {
         // textens innehåll sätts med updateText() metoden
         this.text = this.add.text(16, 16, '', {
             fontSize: '20px',
-            fill: '#ffffff'
+            fontFamily: '"Mochiy Pop P One"',
+            fill: '#2C2C2C',
+
         });
         this.text.setScrollFactor(0);
         this.updateText();
@@ -109,8 +111,8 @@ class PlayScene extends Phaser.Scene {
         this.events.on('resume', function () {
             console.log('Play scene resumed');
         });
-        this.scoreText = this.add.text(16, 48, '', { fontFamily: 'Arial', fontSize: '25px', fill: '#ffffff' });
-        this.highText = this.add.text(16, 48, '', { fontFamily: 'Arial', fontSize: '25px', fill: '#ffffff' });
+        this.scoreText = this.add.text(16, 48, '', { fontFamily: 'Arial', fontSize: '25px', fill: '#ffddfff' });
+        this.highText = this.add.text(16, 48, '', { fontFamily: 'Arial', fontSize: '25px', fill: '#ffddff' });
 
 
 
