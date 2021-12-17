@@ -3,15 +3,23 @@ class PlayScene extends Phaser.Scene {
         super('PlayScene');
         this.score = 0;
         this.highscore = 0;
+        this.hitpoints = 0;
+        this.hpwidth = 64;
+        this.hpheight = 64;
+        this.frameX = 64;
+        this.frameY = 0;
+        this.hpCreateY = 100;
+        this.hpCreateX = 100;
     }
 
     create() {
         // variabel för att hålla koll på hur många gånger vi spikat oss själva
         this.spiked = 0;
-
+        this.hitpoints = 100;
         // ladda spelets bakgrundsbild, statisk
         // setOrigin behöver användas för att den ska ritas från top left
         let bg = this.add.image(0, 0, 'background').setOrigin(0, 0);
+    
         bg.setScrollFactor(0);
         //  this.Align.scaleToGameW(bg, 2);
 
@@ -93,8 +101,11 @@ class PlayScene extends Phaser.Scene {
         // textens innehåll sätts med updateText() metoden
         this.text = this.add.text(16, 16, '', {
             fontSize: '20px',
-            fill: '#ffffff'
+            fontFamily: '"Mochiy Pop P One"',
+            fill: '#2C2C2C',
+
         });
+
         this.text.setScrollFactor(0);
         this.updateText();
 
@@ -109,8 +120,8 @@ class PlayScene extends Phaser.Scene {
         this.events.on('resume', function () {
             console.log('Play scene resumed');
         });
-        this.scoreText = this.add.text(16, 48, '', { fontFamily: 'Arial', fontSize: '25px', fill: '#ffffff' });
-        this.highText = this.add.text(16, 48, '', { fontFamily: 'Arial', fontSize: '25px', fill: '#ffffff' });
+        this.scoreText = this.add.text(16, 48, '', { fontFamily: 'Arial', fontSize: '25px', fill: '#ffddfff' });
+        this.highText = this.add.text(16, 48, '', { fontFamily: 'Arial', fontSize: '25px', fill: '#ffddff' });
 
 
 
@@ -131,7 +142,10 @@ class PlayScene extends Phaser.Scene {
             this.scene.restart();
             this.score = 0;
         }
+        let hpbar = this.add.sprite(this.hpCreateX,this.hpCreateY,'gifts');
+        hpbar.setCrop(this.frameX,this.frameY,this.hpwidth,this.hpheight);
 
+        hpbar.setScrollFactor(0);
         // följande kod är från det tutorial ni gjort tidigare
         // Control the player with left or right keys
 
@@ -157,13 +171,12 @@ class PlayScene extends Phaser.Scene {
             this.player.setVelocityX(850);
         }
 
-       /* if (this.cursors.left.isDown) {
-            this.player.setVelocityX(-850);
-        }*/
+        /* if (this.cursors.left.isDown) {
+             this.player.setVelocityX(-850);
+         }*/
         // Player can jump while walking any direction by pressing the space bar
         // or the 'UP' arrow
-        if ((this.cursors.space.isDown || this.cursors.up.isDown) &&
-        this.player.body.onFloor()) {
+        if ((this.cursors.space.isDown || this.cursors.up.isDown) &&this.player.body.onFloor()) {
             this.player.setVelocityY(-350);
             this.player.play('jump', true);
         }
@@ -182,11 +195,11 @@ class PlayScene extends Phaser.Scene {
             this.score += 0.06;
 
         }
-        if (this.score > this.highscore){
+        if (this.score > this.highscore) {
             this.highscore += 0.06
         }
         this.text.setText(
-            `W to pause | R to restart | Deaths ${this.spiked} | Score ${(this.score).toFixed(0)} | High Score ${(this.highscore).toFixed(0)}`
+            `W to pause | R to restart | Deaths: ${this.spiked} | Score. ${(this.score).toFixed(0)} | High Score: ${(this.highscore).toFixed(0)} | Hp: ${this.hitpoints}`
         );
 
         this.scoreText.setScrollFactor(0);
@@ -201,9 +214,45 @@ class PlayScene extends Phaser.Scene {
 
     // när spelaren landar på en spik, då körs följande metod
     playerHit(player, spike) {
+        /*
+        this.hpwidth = 64;
+        this.hpheight = 64;
+        this.frameX = 128;
+        this.frameY = 64;
+        */
         this.spiked++;
+        this.hitpoints -= 11;
+        if(this.hitpoints < 90){
+            this.hpCreateX = 164;
+            this.frameX = 0;
+            this.frameY = 0;
+        }
+        if (this.hitpoints <80){
+            this.hpCreateX = 100;
+            this.hpCreateY = 36;
+            this.frameX = 64;
+            this.frameY = 64;
+        }
+        if (this.hitpoints <70){
+            
+            this.hpCreateX = 164;
+            this.hpCreateY = -28;
+            this.frameX = 0;
+            this.frameY = 128;
+        }
+        if (this.hitpoints <60){
+            
+            this.hpCreateX = 100;
+            this.hpCreateY = -28;
+            this.frameX = 64;
+            this.frameY = 128;
+        }
+      /*  if (this.hitpoints < 60){
+            this.scene.start('menu')
+            this.scene.restart()
+        }*/
         player.setVelocity(0, 0);
-        player.setX(0);
+        player.setX(this.player.x - 300);
         player.setY(350);
         player.play('idle', true);
         let tw = this.tweens.add({

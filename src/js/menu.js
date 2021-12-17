@@ -15,7 +15,7 @@ class menu extends Phaser.Scene {
 
         const exitButton = this.add.text(372, 240, 'Quit Game', { fontSize: '25px', fill: '#ffffff' });
         exitButton.setInteractive()
-            .on('pointerdown', () => alert("Hello! I am an alert box!!"));
+            .on('pointerdown', () => alert("Close the tab retard"));
 
     }
 }

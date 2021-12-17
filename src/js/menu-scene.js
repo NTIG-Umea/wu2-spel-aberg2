@@ -16,7 +16,7 @@ class PreloadScene extends Phaser.Scene {
         this.text = this.add.text(0, (this.game.config.height / 2) - 64, 'PAUSED', {
             fontFamily: '"Mochiy Pop P One"',
             fontSize: '64px',
-            fill: '#ff0000',
+            fill: '#2C2C2C',
             align: 'center',
             fixedWidth: this.game.config.width,
             fixedHeight: this.game.config.height,
