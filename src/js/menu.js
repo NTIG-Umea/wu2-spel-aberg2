@@ -7,7 +7,7 @@ class menu extends Phaser.Scene {
 
 
     create() {
-        this.add.image(0, 0, 'menuback').setOrigin(0, 0)
+        this.add.image(0, 0, 'background').setOrigin(0, 0)
 
         const helloButton = this.add.text(365, 200, 'Start Game', { fontSize: '25px', fill: '#ffffff' });
         helloButton.setInteractive()
