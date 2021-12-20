@@ -9,7 +9,7 @@ class PlayScene extends Phaser.Scene {
         this.frameX = 64;
         this.frameY = 0;
         this.hpCreateY = 100;
-        this.hpCreateX = 100;
+        this.hpCreateX = 800;
     }
 
     create() {
@@ -65,9 +65,10 @@ class PlayScene extends Phaser.Scene {
 
         for (var i = 0; i < 75; i++) {
             var x = Phaser.Math.RND.between(25600, 500);
-            var y = Phaser.Math.RND.between(366, 366);
+            var y = 366;
 
             this.spikes.create(x, y, 'spike', 'spike');
+            this.spikes.create(25000,y, 'spike','spike')
         }
         // från platforms som skapats från tilemappen
         // kan vi ladda in andra lager
@@ -199,7 +200,7 @@ class PlayScene extends Phaser.Scene {
             this.highscore += 0.06
         }
         this.text.setText(
-            `W to pause | R to restart | Deaths: ${this.spiked} | Score. ${(this.score).toFixed(0)} | High Score: ${(this.highscore).toFixed(0)} | Hp: ${this.hitpoints}`
+            `W to pause | R to restart | Deaths: ${this.spiked} | Score: ${(this.score).toFixed(0)} | High Score: ${(this.highscore).toFixed(0)} | Hp: ${this.hitpoints}`
         );
 
         this.scoreText.setScrollFactor(0);
@@ -221,36 +222,36 @@ class PlayScene extends Phaser.Scene {
         this.frameY = 64;
         */
         this.spiked++;
-        this.hitpoints -= 11;
+        this.hitpoints -= 10;
         if(this.hitpoints < 90){
-            this.hpCreateX = 164;
+            this.hpCreateX = 864;
             this.frameX = 0;
             this.frameY = 0;
         }
         if (this.hitpoints <80){
-            this.hpCreateX = 100;
+            this.hpCreateX = 800;
             this.hpCreateY = 36;
             this.frameX = 64;
             this.frameY = 64;
         }
         if (this.hitpoints <70){
             
-            this.hpCreateX = 164;
+            this.hpCreateX = 864;
             this.hpCreateY = -28;
             this.frameX = 0;
             this.frameY = 128;
         }
         if (this.hitpoints <60){
             
-            this.hpCreateX = 100;
+            this.hpCreateX = 800;
             this.hpCreateY = -28;
             this.frameX = 64;
             this.frameY = 128;
         }
-      /*  if (this.hitpoints < 60){
+        if (this.hitpoints < 60){
             this.scene.start('menu')
             this.scene.restart()
-        }*/
+        }
         player.setVelocity(0, 0);
         player.setX(this.player.x - 300);
         player.setY(350);
