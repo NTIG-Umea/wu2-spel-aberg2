@@ -9,5 +9,3 @@ Att få mer erfarenhet av grpparbete och lärde mig om phaser. Grupparbeten är 
 Att jag inte fick klart allt jag ville med spelet och ett sätt att undvika detta är att lägga ned mer tid på projekten och inte nöja sig med de simpla grejorna.
 # Sammanfattning
 Det har  varit roligt att koda spelet och jag har fått många lärdomar och fått mer erfarenhet om hur spel tillverkas. Produkten blev som jag ville med mycket utrymme till mer avancerade funktioner men grundideén blev som jag ville.
-Länk till drive mapp
-https://github.com/NTIG-Umea/min-sommarberattelse-aberg2
