@@ -196,13 +196,13 @@ class PlayScene extends Phaser.Scene {
             this.score += 0.06;
 
         }
+        
         if (this.score > this.highscore) {
             this.highscore += 0.06
         }
         this.text.setText(
             `W to pause | R to restart | Deaths: ${this.spiked} | Score: ${(this.score).toFixed(0)} | High Score: ${(this.highscore).toFixed(0)} | Hp: ${this.hitpoints}`
         );
-
         this.scoreText.setScrollFactor(0);
         this.highText.setScrollFactor(0);
 
